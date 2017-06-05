@@ -5,7 +5,6 @@ from Nodes.VariableDeclaration import *
 from Nodes.WordOperations import *
 from Nodes.PrintOperation import *
 
-tmp = print
 class Parser:
     def get_type(self, variable):
         return self.variableTypes[variable]
@@ -152,9 +151,17 @@ class Parser:
             self.generate_exit(f)
         import os
         import sys
-        os.system("nasm -f elf temp.nasm -o linked.o && gcc -o linked linked.o -m32")
-        if "run" or "-run" in sys.argv:
+        file_name = "a"
+        for i in sys.argv:
+            if i != "-run":
+                file_name = i
+                break
+
+        os.system("nasm -f elf temp.nasm -o temp.o && gcc -o {} temp.o -m32".format(file_name, file_name))
+        if "-run" in sys.argv:
             os.system("./linked")
+            sys.argv.remove("-run")
+
 
 
 
