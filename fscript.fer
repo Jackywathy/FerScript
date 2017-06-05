@@ -1,0 +1,10 @@
+num x = 5;
+string hi = "Hello World!";
+
+print("X is:");
+print(x);
+add -5 to x;
+print("X is:");
+print(x);
+
+print(hi);
